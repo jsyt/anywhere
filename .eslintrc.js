@@ -25,6 +25,7 @@ module.exports = {
             "error",{
                 "allow": ["warn", "error", "info"]
             }
-        ]
+        ],
+        "parser": "babel-eslint"
     }
 };

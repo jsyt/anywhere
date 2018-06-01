@@ -19,7 +19,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "chalk": "^2.4.1"
+    "chalk": "^2.4.1",
+    "handlebars": "^4.0.11"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
