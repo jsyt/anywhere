@@ -7,6 +7,7 @@ const config = require('../config/defaultConfig');
 const handlebars = require('handlebars')
 const mime = require('./mime');
 const compress = require('./compress');
+const range = require('./range');
 
 
 const tplPath = path.join(__dirname, '../template/dir.tpl');
@@ -29,8 +30,17 @@ module.exports = async function (req, rep, filePath){
       }
       rep.end(template(data));
     }else if(stats.isFile()){
-      let rs = fs.createReadStream(filePath);
-      rep.statusCode = '200';
+      const {code, start, end} = range(stats.size, req, rep);
+      let rs;
+      if(code === 200){
+        rep.statusCode = '200';
+        rs = fs.createReadStream(filePath);
+      }else if(code === 206){
+        rep.statusCode = '206';
+        rs = fs.createReadStream(filePath, {start, end});
+      }
+
+
       rep.setHeader('Content-Type', contentPath);
       if(filePath.match(config.compress)){
         rs = compress(rs, req, rep);
