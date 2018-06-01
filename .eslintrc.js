@@ -5,6 +5,7 @@ module.exports = {
     },
     "extends": "eslint:recommended",
     "rules": {
+        "parser": "babel-eslint",
         "indent": [
             "error",
             2
