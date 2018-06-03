@@ -8,49 +8,55 @@ const handlebars = require('handlebars')
 const mime = require('./mime');
 const compress = require('./compress');
 const range = require('./range');
+const isFresh = require('./cache');
 
 
 const tplPath = path.join(__dirname, '../template/dir.tpl');
 const source = fs.readFileSync(tplPath);
 const template = handlebars.compile(source.toString());
 
-module.exports = async function (req, rep, filePath){
+module.exports = async function (req, res, filePath){
   try {
     const stats = await stat(filePath);
     const contentPath = mime(filePath);
     if(stats.isDirectory()){
       const files = await readdir(filePath)
-      rep.statusCode = '200';
-      rep.setHeader('Content-Type', 'text/html');
+      res.statusCode = '200';
+      res.setHeader('Content-Type', 'text/html');
       const dir = path.relative(config.root, filePath);
       const data = {
         title : path.basename(filePath),
         files,
         dir : dir ? `/${dir}` : ''
       }
-      rep.end(template(data));
+      res.end(template(data));
     }else if(stats.isFile()){
-      const {code, start, end} = range(stats.size, req, rep);
+      const {code, start, end} = range(stats.size, req, res);
       let rs;
+      if(isFresh(stats, req, res)){
+        res.statusCode = '304';
+        res.end();
+        return;
+      }
       if(code === 200){
-        rep.statusCode = '200';
+        res.statusCode = '200';
         rs = fs.createReadStream(filePath);
       }else if(code === 206){
-        rep.statusCode = '206';
+        res.statusCode = '206';
         rs = fs.createReadStream(filePath, {start, end});
       }
 
 
-      rep.setHeader('Content-Type', contentPath);
+      res.setHeader('Content-Type', contentPath);
       if(filePath.match(config.compress)){
-        rs = compress(rs, req, rep);
+        rs = compress(rs, req, res);
       }
-      rs.pipe(rep);
+      rs.pipe(res);
     }
   } catch (error) {
-    rep.statusCode = '404';
-    rep.setHeader('Content-Type', 'text/plain');
-    rep.end(`${filePath} is not a directory or file \n ${error}`);
+    res.statusCode = '404';
+    res.setHeader('Content-Type', 'text/plain');
+    res.end(`${filePath} is not a directory or file \n ${error}`);
     return;
   }
 }
