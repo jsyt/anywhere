@@ -4,13 +4,13 @@ module.exports = {
         "node": true,
         "mocha": true
     },
-    "extends": "eslint:recommended",
+    "extends": ["eslint:recommended"],
+    "parser": "babel-eslint",
     "rules": {
-        "parser": "babel-eslint",
-        // "indent": [
-        //     "error",
-        //     2
-        // ],
+        "indent": [
+            "error",
+            2
+        ],
         "linebreak-style": [
             "error",
             "unix"
@@ -19,10 +19,10 @@ module.exports = {
             "error",
             "single"
         ],
-        // "semi": [
-        //     "error",
-        //     "always"
-        // ],
+        "semi": [
+            "error",
+            "always"
+        ],
         "no-console": [
             "error",{
                 "allow": ["warn", "error", "info"]
