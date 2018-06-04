@@ -6,6 +6,10 @@ module.exports = {
     },
     "extends": ["eslint:recommended"],
     "parser": "babel-eslint",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "script"
+    },
     "rules": {
         "indent": [
             "error",
@@ -28,10 +32,7 @@ module.exports = {
                 "allow": ["warn", "error", "info"]
             }
         ],
-        "parserOptions": {
-            "ecmaVersion": 6,
-            "sourceType": "script"
-        },
+
     }
 };
 // module.exports = {

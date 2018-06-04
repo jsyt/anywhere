@@ -6,13 +6,13 @@ function refresh(stats, res){
     res.setHeader('Expires', (new Date(Date.now() + maxAge * 1000)).toUTCString());
   }
   if(cacheControl){
-    res.setHeader('Cache-Control', `public, max-age = ${maxAge}`)
+    res.setHeader('Cache-Control', `public, max-age = ${maxAge}`);
   }
   if(lastModified){
-    res.setHeader('Last-Modified', stats.mtime.toUTCString())
+    res.setHeader('Last-Modified', stats.mtime.toUTCString());
   }
   if(etag){
-    res.setHeader('Etag', `${stats.size}-${stats.mtime}`)
+    res.setHeader('Etag', `${stats.size}-${stats.mtime}`);
   }
 }
 
@@ -31,4 +31,4 @@ module.exports = function isFresh(stats, req, res){
   }
   return true;
 
-}
+};
