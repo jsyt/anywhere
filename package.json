@@ -8,7 +8,10 @@
     "lint": "eslint .",
     "fix": "eslint --fix ."
   },
-
+  "pre-commit": [
+    "fix",
+    "lint"
+  ],
   "repository": {
     "type": "git",
     "url": "git@jsyt.github.com:jsyt/anywhere.git"
@@ -17,7 +20,8 @@
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",
-    "handlebars": "^4.0.11"
+    "handlebars": "^4.0.11",
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.3",
