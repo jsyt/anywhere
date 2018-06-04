@@ -1,8 +1,8 @@
-const http = require("http");
-const path = require("path");
-const config = require("./config/defaultConfig");
-const chalk = require("chalk");
-const route  = require("./helper/route");
+const http = require('http');
+const path = require('path');
+const config = require('./config/defaultConfig');
+const chalk = require('chalk');
+const route  = require('./helper/route');
 
 
 
