@@ -1,9 +1,9 @@
 {
-  "name": "anywhere",
+  "name": "watchfile",
   "version": "1.0.0",
   "description": "Tiny NodeJS Static Web server",
   "main": "./src/app.js",
-  "bin": "bin/anywhere",
+  "bin": "bin/watchfile",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint .",
