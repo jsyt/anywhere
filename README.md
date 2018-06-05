@@ -1,22 +1,22 @@
-# watchfile
+# watchfilecli
 Tiny NodeJS Static Web server
 
 ## 安装
 
 ```
-npm i -g watchfile
+npm i -g watchfilecli
 ```
 
 
 ## 使用方法
 
 ```
-watchfile  # 把当前文件夹作为静态资源服务器
+watchfilecli  # Use the current folder as the root directory of the static resource server.
 
-watchfile -p 8080  # 设置端口号为 8080
+watchfilecli -p 8080  # Set the port number to 8080
 
-watchfile -h localhost   # 设置 host 为 localhost
+watchfilecli -h localhost   # Set host to localhost
 
-watchfile -d /usr   # 将 /usr 设置为根目录
+watchfilecli -d /usr   # Set /usr as the root directory
 
 ```
