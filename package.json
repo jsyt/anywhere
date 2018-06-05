@@ -1,6 +1,6 @@
 {
   "name": "watchfilecli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tiny NodeJS Static Web server",
   "main": "./src/app.js",
   "bin": "bin/watchfilecli",
