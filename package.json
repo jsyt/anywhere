@@ -17,7 +17,11 @@
     "type": "git",
     "url": "git@jsyt.github.com:jsyt/watchfile.git"
   },
-  "author": "",
+  "keywords": [
+    "static",
+    "webserver"
+],
+  "author": "lukehu",
   "license": "MIT",
   "dependencies": {
     "chalk": "^2.4.1",
