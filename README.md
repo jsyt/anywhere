@@ -1,14 +1,14 @@
 # watchfilecli
 Tiny NodeJS Static Web server
 
-## 安装
+## Install
 
 ```
 npm i -g watchfilecli
 ```
 
 
-## 使用方法
+## Usage
 
 ```
 watchfilecli  # Use the current folder as the root directory of the static resource server.
